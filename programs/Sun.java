@@ -1,6 +1,9 @@
 public class Sun{
-  private
+  private int amount;
   
-  private Sun(Plant p){
+  private Sun(){
+    amount=25;
   }
+  
+  public int getAmount() { return amount; }
 }
