@@ -16,4 +16,9 @@ regen			7.5 sec
 damage			1 PSH
 health			3 seconds regular zombie
 
+cherry bomb
+cost			150
+regen			50 sec
+area			3x3
+
 * PSH - pea shooter hit
