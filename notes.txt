@@ -2,13 +2,18 @@
 zombie
 speed		4	5 seconds per square
 damage		10	10
-health		70	10 pea shooter hits
+health		70	10 PSH
 
 sunflower
 cost			50
-health			3 seconds regular zombie
+regen			7.5 sec
+health			3 sec regular zombie
 provides		25 sun per drop
 
 pea shooter
 cost			100
+regen			7.5 sec
+damage			1 PSH
 health			3 seconds regular zombie
+
+* PSH - pea shooter hit
