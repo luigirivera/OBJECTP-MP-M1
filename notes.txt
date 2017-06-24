@@ -13,12 +13,16 @@ provides		25 sun per drop
 pea shooter
 cost			100
 regen			7.5 sec
-damage			1 PSH
+damage			normal
+d.damage		1 PSH
 health			3 seconds regular zombie
 
 cherry bomb
 cost			150
+damage			massive
+d.damage		90 PSH
 regen			50 sec
 area			3x3
 
 * PSH - pea shooter hit
+** Damage is intensity of each hit. D(irect) Damage is the equivalent to a PSH
