@@ -1,0 +1,8 @@
+zombie
+- 12 hits from pea shooter
+
+pea shooter
+- cost 100
+
+sun
+- 25 per pickup
