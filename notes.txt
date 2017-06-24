@@ -1,8 +1,14 @@
+		specs	game
 zombie
-- 12 hits from pea shooter
+speed		4	5 seconds per square
+damage		10	10
+health		70	10 pea shooter hits
+
+sunflower
+cost			50
+health			3 seconds regular zombie
+provides		25 sun per drop
 
 pea shooter
-- cost 100
-
-sun
-- 25 per pickup
+cost			100
+health			3 seconds regular zombie
