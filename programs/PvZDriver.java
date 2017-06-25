@@ -2,17 +2,15 @@ public class PvZDriver
 {
 	public static void main(String[] args)
 	{
-		int time=0, result=0;
+		Timer timer = new Timer();
+		Thread time = new Thread(timer);
 		
-		do{
-			time++;
-			if(time<=180){
-				
-			}
-			else result=1;
-		}while(time<=180);
+		time.start();
 		
-		if(result==1) System.out.println("TIME RAN OUT! YOU WIN!!");
+		//game to be added
+		while((time.getState()!=Thread.State.TERMINATED) && (game.getState()!=Thread.State.TERMINATED));
+		
+		if(time.getState()==Thread.State.TERMINATED) System.out.println("TIME RAN OUT! YOU WIN!!");
 		else System.out.println("THE ZOMBIES ATE YOUR BRAIN! YOU LOSE!!");
 	}
 }
