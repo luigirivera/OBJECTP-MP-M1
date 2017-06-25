@@ -26,3 +26,4 @@ area			3x3
 
 * PSH - pea shooter hit
 ** Damage is intensity of each hit. D(irect) Damage is the equivalent to a PSH
+*** Speed - 1 second = 1 normal zombie step
