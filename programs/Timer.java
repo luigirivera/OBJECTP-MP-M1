@@ -15,6 +15,26 @@ public class Timer {
         max = LocalTime.of(0, m, s);
     }
 
+    public LocalTime getCurrent () {
+        return current;
+    }
+
+    public LocalTime getMax () {
+        return max;
+    }
+
+    public String getCurrentString () {
+        return current.format(DateTimeFormatter.ofPattern("mm:ss"));
+    }
+
+    public String getMaxString () {
+        return max.format(DateTimeFormatter.ofPattern("mm:ss"));
+    }
+
+    public int getCurrentSeconds () {
+        return current.toSecondOfDay();
+    }
+
     public void progress (int s) {
         current = current.plusSeconds(s);
     }

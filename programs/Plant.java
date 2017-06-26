@@ -39,7 +39,7 @@ public class Plant {
                 regenRate = 7.5;
                 damage = 1;
                 health = 30;
-                range = 8;
+                range = map.getXmax() - 1;
 
                 break;
             default:
@@ -50,6 +50,10 @@ public class Plant {
 	
     public int[] getPos () {
         return pos;
+    }
+
+    public int getCost () {
+        return cost;
     }
 
     public void takeDamage (double d) {

@@ -31,6 +31,10 @@ public class Zombie {
         health = 70;
     }
 
+    public int[] getPos () {
+        return pos;
+    }
+
     public double getSpeed () {
         if (armor != null)
             return speed - armor.getSpeedDec();
@@ -78,6 +82,19 @@ public class Zombie {
 
     public boolean isRightOf (Plant p) {
         return pos[0] == p.getPos()[0] + 1 && pos[1] == p.getPos()[1];
+    }
+
+    public boolean moveLeft () {
+        int row = pos[0];
+        int col = pos[1];
+        if (col - 1 >= 0 && map.getPA()[row][col-1] == null && map.getZA()[row][col-1] == null) {
+            map.getZA()[row][col-1] = this;
+            pos[1] = col-1;
+            map.getZA()[row][col] = null;
+        }
+        else if (col - 1 == -1)
+            return true;
+        return false;
     }
 
     public void attack (Plant p) {

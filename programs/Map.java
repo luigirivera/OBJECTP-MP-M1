@@ -4,9 +4,9 @@ public class Map {
     private Plant[][] PA;
     private Zombie[][] ZA;
 
-    public Map () {
-        xmax = 9;
-        ymax = 5;
+    public Map (int x, int y) {
+        xmax = x; //9
+        ymax = y; //5
         PA = new Plant[xmax][ymax];
         ZA = new Zombie[xmax][ymax];
     }
@@ -27,10 +27,14 @@ public class Map {
         return ZA;
     }
 
+    public boolean tileIsFree (int row, int col) { 
+        return (row < ymax && col < xmax && PA[row][col] == null && ZA[row][col] == null);
+    }
+
     /*  return true if successfully placed
         return false otherwise (no plant of that name/tile occupied/out of bounds)
     */
-    private boolean placePlant (String n, int row, int col) {
+    public boolean placePlant (String n, int row, int col) {
         if (row < ymax && col < xmax && PA[row][col] == null && ZA[row][col] == null) {
             PA[row][col] = new Plant (n, this, row, col);
             return true;
@@ -40,7 +44,7 @@ public class Map {
     }
 
     //no armor (regular zombie)
-    private boolean placeZombie (int row, int col) {
+    public boolean placeZombie (int row, int col) {
         if (row < ymax && col < xmax && PA[row][col] == null && ZA[row][col] == null) {
             ZA[row][col] = new Zombie (this, row, col);
             return true;
@@ -50,7 +54,7 @@ public class Map {
     }
 
     //with armor
-    private boolean placeZombie (String a, int row, int col) {
+    public boolean placeZombie (String a, int row, int col) {
         if (row < ymax && col < xmax && PA[row][col] == null && ZA[row][col] == null) {
             ZA[row][col] = new Zombie (a, this, row, col);
             return true;
@@ -58,7 +62,16 @@ public class Map {
         else
             return false;
     }
-
+    /*
+    public void moveLeft (Zombie z) {
+        int row = z.getPos()[0];
+        int col = z.getPos()[1];
+        if (col - 1 >= 0 && PA[row][col-1] == null && ZA[row][col-1] == null) {
+            z
+        }
+        else if (col - 1 == -1)
+    }
+    */
     private char displayCheckTile (int row, int col) {
         if (PA[row][col] != null)
             return 'P';
