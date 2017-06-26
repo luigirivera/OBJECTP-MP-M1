@@ -36,12 +36,24 @@ public class Armor{
 	public void setName(String n) { name = n; }
 	public String getName() { return name; }
 	
-	public void setdamageDec(int d) { damageDec = d; }
-	public double getdamageDec() { return damageDec; }
+	public void setDamageDec(double d) { damageDec = d; }
+	public double getDamageDec() { return damageDec; }
 	
-	public void setSpeedDec(int s) { speedDec = s; }
+	public void setSpeedDec(double s) { speedDec = s; }
 	public double getSpeedDec() { return speedDec;}
 	
-	public void setHealthInc(double h) { healthInc = s; }
+	public void setHealthInc(double h) { healthInc = h; }
 	public double getHealthInc() { return healthInc;}
+
+    public double takeDamage (double d) {
+        if (healthInc >= d) {
+            healthInc = healthInc - d;
+            d = 0;
+        }
+        else {
+            d = d - healthInc;
+            healthInc = 0;
+        }
+        return d;
+    }
 }

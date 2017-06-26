@@ -9,9 +9,11 @@ public class Zombie {
 	
 	public Zombie (Map m, int r, int c) {
         map = m;
-        pos = {r,c};
+        pos = new int[2];
+        pos[0] = r;
+        pos[1] = c;
 
-		armor = null
+		armor = null;
 		speed = 4;
 		damage = 10;
 		health = 70;
@@ -19,7 +21,9 @@ public class Zombie {
 
     public Zombie (String a, Map m, int r, int c) {
         map = m;
-        pos = {r,c};
+        pos = new int[2];
+        pos[0] = r;
+        pos[1] = c;
 
         setArmor(new Armor(a));
         speed = 4;
@@ -73,7 +77,7 @@ public class Zombie {
     }
 
     public boolean isRightOf (Plant p) {
-        return pos[0] == p.pos[0] + 1 && pos[1] == p.pos[1];
+        return pos[0] == p.getPos()[0] + 1 && pos[1] == p.getPos()[1];
     }
 
     public void attack (Plant p) {
@@ -87,7 +91,7 @@ public class Zombie {
             if (armor.getHealthInc() <= 0)
                 armor = null;
         }
-        this.takeDamage(d);
+        health = health - d;
         if (this.getHealth() <= 0)
             this.kill();
     }

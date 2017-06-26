@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Plant {
     private Map map;
     private int[] pos;
@@ -7,7 +9,7 @@ public class Plant {
 	private double regenRate;
 	private double damage;
 	private double health;
-	private ArrayList<Integer[]> range;
+	private int range;
 	private double dDamage;
 	private double speed;
 	
@@ -15,7 +17,9 @@ public class Plant {
         switch (n) {
             case "Sunflower":
                 map = m;
-                pos = {r,c};
+                pos = new int[2];
+                pos[0] = r;
+                pos[1] = c;
 
                 name = n;
                 cost = 50;
@@ -26,16 +30,16 @@ public class Plant {
                 break;
             case "Peashooter":
                 map = m;
-                pos = {r,c};
+                pos = new int[2];
+                pos[0] = r;
+                pos[1] = c;
 
                 name = n;
                 cost = 100;
                 regenRate = 7.5;
                 damage = 1;
                 health = 30;
-                range = new ArrayList<Integer[]> ();
-                for (int i = 0 ; i < 9 ; i++)
-                    range.add({[r+i,c});
+                range = 8;
 
                 break;
             default:
@@ -44,4 +48,19 @@ public class Plant {
         }
     }
 	
+    public int[] getPos () {
+        return pos;
+    }
+
+    public void takeDamage (double d) {
+        health = health - d;
+        if (health <= 0)
+            this.kill();
+    }
+
+    public void kill () {
+        System.out.println("Plant at (" + pos[0] + "," + pos[1] + ") died!");
+        map.getPA()[pos[0]][pos[1]] = null;
+    }
+
 }
