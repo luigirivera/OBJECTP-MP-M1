@@ -1,34 +1,46 @@
 public class Plant {
+    private Map map;
+    private int[] pos;
 
 	private String name;
-    private int[] pos;
 	private int cost;
 	private double regenRate;
 	private double damage;
 	private double health;
-	private int[][] range;
+	private ArrayList<Integer[]> range;
 	private double dDamage;
 	private double speed;
 	
-	public Plant (String n, int A[]) {
+	public Plant (String n, Map m, int r, int c) {
         switch (n) {
             case "Sunflower":
+                map = m;
+                pos = {r,c};
+
                 name = n;
-                pos = A;
                 cost = 50;
                 regenRate = 7.5;
                 damage = 0;
                 health = 30;
+
+                break;
             case "Peashooter":
+                map = m;
+                pos = {r,c};
+
                 name = n;
-                pos = A;
                 cost = 100;
                 regenRate = 7.5;
                 damage = 1;
                 health = 30;
-                range = new int[9][2];
+                range = new ArrayList<Integer[]> ();
                 for (int i = 0 ; i < 9 ; i++)
-                    range[i] = {[A[0]+i,A[1]}
+                    range.add({[r+i,c});
+
+                break;
+            default:
+                name = null;
+                break;
         }
     }
 	
