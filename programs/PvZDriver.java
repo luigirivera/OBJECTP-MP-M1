@@ -7,6 +7,7 @@ public class PvZDriver {
         Map map = new Map (9, 5);
         Player player = new Player ();
         Scanner sc = new Scanner (System.in);
+		int sunTemp=0;
         String input;
         ArrayList<String> nameList;
 		
@@ -16,8 +17,13 @@ public class PvZDriver {
                 if ((timer.getCurrentSeconds() + 1) % 3 == 0) {
                     System.out.print("Collect sun? [Y/N]");
                     input = sc.next();
-                    if (input.equalsIgnoreCase("Y"))
-                        player.addSun(25);
+                    if (input.equalsIgnoreCase("Y")){
+						if(sunTemp==0)
+							player.addSun(25);
+						else
+							player.addSun(sunTemp + 25);	
+					}
+					else sunTemp += 25;
                     System.out.println("Sun..." + player.getSun());
                 }
                 
@@ -28,7 +34,7 @@ public class PvZDriver {
                         System.out.println(s);
                     }
                     System.out.println("");
-                    System.out.println("Add to board? (Input name of plant to buy; any key to continue");
+                    System.out.println("Add to board? (Input name of plant to buy; any key to continue)");
                     input = sc.next();
                     for (String s : nameList) {
                         if (input.equalsIgnoreCase(s))
