@@ -1,13 +1,29 @@
 import java.util.Random;
 import java.time.LocalTime;
-
+/**
+*
+* This class instantiates a level map
+* 
+* @author Luis Lopez
+* @author Louie Rivera
+* @version 1.0
+* @since 2017-06-26
+*
+*/
 public class Map {
     private int xmax; //9 spaces horizontal
     private int ymax; //5 spaces vertical
     private Plant[][] PA;
     private Zombie[][] ZA;
     private Random rand;
-
+    
+   /**
+	*
+	* This constructor instantiates a map with appropriate size
+	* @param x The maximum length of the map
+	* @param y The maximum height of the map
+	*
+	*/
     public Map (int x, int y) {
         xmax = x; //9
         ymax = y; //5
@@ -15,29 +31,69 @@ public class Map {
         ZA = new Zombie[ymax][xmax];
         rand = new Random (LocalTime.now().toNanoOfDay());
     }
-
+    
+	/**
+	*
+	* This method returns the length of the map
+	*
+	* @return xmax The length of the map
+	*/
     public int getXmax () {
         return xmax;
     }
-
+    
+	/**
+	*
+	* This method returns the height of the map
+	*
+	* @return ymax The height of the map
+	*/
     public int getYmax () {
         return ymax;
     }
-
+   
+	/**
+	*
+	* This method returns all plants in map
+	*
+	* @return PA All plants in map
+	*/
     public Plant[][] getPA () {
         return PA;
     }
 
+	/**
+	*
+	* This method returns all zombies in map
+	*
+	* @return ZA All zombies in map
+	*/
     public Zombie[][] getZA () {
         return ZA;
     }
-
+    
+	/**
+	* 
+	* This method checks and returns if a tile is free
+	*
+	* @param row The row requested
+	* @param col The column requested
+	* @return true If the tile is free
+	* @return false If the tile is occupied
+	*
+	*/
     public boolean tileIsFree (int row, int col) { 
         return (row < ymax && col < xmax && PA[row][col] == null && ZA[row][col] == null);
     }
-
-    /*  return true if successfully placed
-        return false otherwise (no plant of that name/tile occupied/out of bounds)
+    
+    /**
+	* This method checks and returns if a plant is placeable
+	*
+	* @param n The name of the plant
+	* @param row The row requested
+	* @param col The column requested
+	* @return true if successfully placed
+    * @return false otherwise (no plant of that name/tile occupied/out of bounds)
     */
     public boolean placePlant (String n, int row, int col) {
         if (tileIsFree (row, col)) {
@@ -49,7 +105,14 @@ public class Map {
         }
     }
 
-    //no armor (regular zombie)
+    /**
+	* This method checks and returns if a vanilla zombie is placeable
+	*
+	* @param row The row requested
+	* @param col The column requested
+	* @return true if successfully placed
+    * @return false otherwise (no plant of that name/tile occupied/out of bounds)
+    */
     public boolean placeZombie (int row, int col) {
         if (tileIsFree (row, col)) {
             ZA[row][col] = new Zombie (this, row, col);
@@ -60,7 +123,15 @@ public class Map {
         }
     }
 
-    //with armor
+    /**
+	* This method checks and returns if an armored zombie is placeable
+	*
+	* @param a The armor of the zombie
+	* @param row The row requested
+	* @param col The column requested
+	* @return true if successfully placed
+    * @return false otherwise (no plant of that name/tile occupied/out of bounds)
+    */
     public boolean placeZombie (String a, int row, int col) {
         if (tileIsFree (row, col)) {
             ZA[row][col] = new Zombie (a, this, row, col);
@@ -78,6 +149,12 @@ public class Map {
         }
         else if (col - 1 == -1)
     }
+    */
+    
+    /**
+    * This method makes zombies spawn at the end of the map
+    *
+    * @param s The second of time
     */
 
     public void spawnZombie (int s) {
@@ -115,8 +192,10 @@ public class Map {
         }
     }
 
-/*  return true if zombie has reached the end
-    return false otherwise
+/**
+*  This method moces the zombies and make the plants attack every second
+*   @return true if zombie has reached the end
+*   @return false if otherwise
 */
     public boolean progress () {
         int row, col;
@@ -144,7 +223,17 @@ public class Map {
         }
         return false;
     }
-
+    
+	/**
+	*
+	* This method checks and returns the current occupant of the tile
+	*
+	* @param row The current row to check
+	* @param col The current column to check
+	* @return P A plant is located
+	* @return Z A zombie is located
+	* @return none Nothing is located
+	*/
     private char displayCheckTile (int row, int col) {
         if (PA[row][col] != null)
             return PA[row][col].getName().charAt(0);
@@ -152,7 +241,10 @@ public class Map {
             return 'Z';
         return ' ';
     }
-
+    
+	/**
+	* This method displays the map currently in the game
+	*/
     public void display () {
         int row, col;
         for (row = 0 ; row < ymax ; row++) {
