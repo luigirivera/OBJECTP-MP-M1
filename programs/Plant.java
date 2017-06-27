@@ -148,7 +148,7 @@ public class Plant {
         ArrayList<String> list = getNameListAfford(p);
         if (!list.isEmpty()) {
             System.out.println("Can afford: ");
-            for (String s : nameList)
+            for (String s : list)
                 System.out.println(s);
             System.out.println("");
         }

@@ -29,11 +29,11 @@ public class PvZDriver {
                     input = sc.next();
                     if (input.equalsIgnoreCase("Y")){
 						if(sunTemp==0)
-							player.addSun(25);
+							player.addSun(25 + map.getSunFromSunflowers());
 						else
-							player.addSun(sunTemp + 25);	
+							player.addSun(sunTemp + 25 + map.getSunFromSunflowers());	
 					}
-					else sunTemp += 25;
+					else sunTemp += (25 + map.getSunFromSunflowers());
                     System.out.println("Sun..." + player.getSun());
                 }
                 
