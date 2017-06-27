@@ -55,6 +55,10 @@ public class Plant {
         return pos;
     }
 
+    public String getName () {
+        return name;
+    }
+
     public int getCost () {
         return cost;
     }
@@ -77,6 +81,18 @@ public class Plant {
         }
 
         return list;
+    }
+
+    public static void displayNameListAfford (Player p) {
+        ArrayList<String> list = getNameListAfford(p);
+        if (!list.isEmpty()) {
+            System.out.println("Can afford: ");
+            for (String s : nameList)
+                System.out.println(s);
+            System.out.println("");
+        }
+        else
+            System.out.println("Can't afford any plants!");
     }
 
     public void attack () {

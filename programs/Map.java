@@ -7,8 +7,8 @@ public class Map {
     public Map (int x, int y) {
         xmax = x; //9
         ymax = y; //5
-        PA = new Plant[xmax][ymax];
-        ZA = new Zombie[xmax][ymax];
+        PA = new Plant[ymax][xmax];
+        ZA = new Zombie[ymax][xmax];
     }
 
     public int getXmax () {
@@ -39,8 +39,9 @@ public class Map {
             PA[row][col] = new Plant (n, this, row, col);
             return true;
         }
-        else
+        else {
             return false;
+        }
     }
 
     //no armor (regular zombie)
@@ -49,8 +50,9 @@ public class Map {
             ZA[row][col] = new Zombie (this, row, col);
             return true;
         }
-        else
+        else {
             return false;
+        }
     }
 
     //with armor
@@ -74,7 +76,7 @@ public class Map {
     */
     private char displayCheckTile (int row, int col) {
         if (PA[row][col] != null)
-            return 'P';
+            return PA[row][col].getName().charAt(0);
         if (ZA[row][col] != null)
             return 'Z';
         return ' ';
