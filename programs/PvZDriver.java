@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class PvZDriver {
 	public static void main (String[] args) {
@@ -7,6 +8,7 @@ public class PvZDriver {
         Player player = new Player ();
         Scanner sc = new Scanner (System.in);
         String input;
+        ArrayList<String> nameList;
 		
         while (!timer.isDone() /*&& owner is not dead*/) {
             System.out.println("Time..." + timer.getCurrentString());
@@ -17,6 +19,21 @@ public class PvZDriver {
                     if (input.equalsIgnoreCase("Y"))
                         player.addSun(25);
                     System.out.println("Sun..." + player.getSun());
+                }
+                
+                nameList = Plant.getNameListAfford(player);
+                if (nameList.size() > 0) {
+                    System.out.println("Can afford: ");
+                    for (String s : nameList) {
+                        System.out.println(s);
+                    }
+                    System.out.println("");
+                    System.out.println("Add to board? (Input name of plant to buy; any key to continue");
+                    input = sc.next();
+                    for (String s : nameList) {
+                        if (input.equalsIgnoreCase(s))
+                            System.out.println("Debug line!");
+                    }
                 }
             }
             

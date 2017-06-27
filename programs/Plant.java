@@ -12,6 +12,9 @@ public class Plant {
 	private int range;
 	private double dDamage;
 	private double speed;
+
+    private static String[] nameList = {"Sunflower", "Peashooter"};
+    private static int[] costList = {50, 100};
 	
 	public Plant (String n, Map m, int r, int c) {
         switch (n) {
@@ -54,6 +57,41 @@ public class Plant {
 
     public int getCost () {
         return cost;
+    }
+
+    public static String[] getNameList () {
+        return nameList;
+    }
+
+    public static int[] getCostList () {
+        return costList;
+    }
+
+    public static ArrayList<String> getNameListAfford (Player p) {
+        ArrayList<String> list = new ArrayList<String> ();
+        int i;
+
+        for (i = 0 ; i < nameList.length ; i++) {
+            if (p.getSun() >= costList[i])
+                list.add(nameList[i]);
+        }
+
+        return list;
+    }
+
+    public void attack () {
+        int i = 1;
+        Zombie z = null;
+        while (i <= range && z == null) {
+            if (map.getZA()[pos[0]][pos[1]+i] != null)
+                z = map.getZA()[pos[0]][pos[1]+i];
+            if (z == null);
+            i++;
+        }
+        if (i == 1)
+            z.takeDamage(dDamage);
+        else if (i <= range)
+            z.takeDamage(damage);
     }
 
     public void takeDamage (double d) {
