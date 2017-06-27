@@ -40,9 +40,11 @@ public class Plant {
                 name = n;
                 cost = 100;
                 regenRate = 7.5;
-                damage = 1;
+                damage = 7;
                 health = 30;
                 range = map.getXmax() - 1;
+                dDamage = 7;
+                speed = 3;
 
                 break;
             default:
@@ -96,18 +98,22 @@ public class Plant {
     }
 
     public void attack () {
-        int i = 1;
-        Zombie z = null;
-        while (i <= range && z == null) {
-            if (map.getZA()[pos[0]][pos[1]+i] != null)
-                z = map.getZA()[pos[0]][pos[1]+i];
-            if (z == null);
-            i++;
+        int i;
+        Zombie z;
+        if (damage > 0) {
+            i = 1;
+            z = null;
+            while (i+pos[1] <= range && z == null) {
+                if (map.getZA()[pos[0]][pos[1]+i] != null)
+                    z = map.getZA()[pos[0]][pos[1]+i];
+                if (z == null);
+                    i++;
+            }
+            if (i == 1)
+                z.takeDamage(dDamage);
+            else if (i+pos[1] <= range)
+                z.takeDamage(damage);
         }
-        if (i == 1)
-            z.takeDamage(dDamage);
-        else if (i <= range)
-            z.takeDamage(damage);
     }
 
     public void takeDamage (double d) {

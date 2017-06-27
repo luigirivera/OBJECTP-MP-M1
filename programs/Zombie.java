@@ -80,10 +80,6 @@ public class Zombie {
             armor = null;
     }
 
-    public boolean isRightOf (Plant p) {
-        return pos[0] == p.getPos()[0] + 1 && pos[1] == p.getPos()[1];
-    }
-
     public boolean moveLeft () {
         int row = pos[0];
         int col = pos[1];
@@ -97,9 +93,11 @@ public class Zombie {
         return false;
     }
 
-    public void attack (Plant p) {
-        if (this.isRightOf(p))
-            p.takeDamage(damage);
+    public void attack () {
+        int row = pos[0];
+        int col = pos[1];
+        if (col - 1 >= 0 && map.getPA()[row][col-1] != null)
+            map.getPA()[row][col-1].takeDamage(damage);
     }
 
     public void takeDamage (double d) {
@@ -109,6 +107,7 @@ public class Zombie {
                 armor = null;
         }
         health = health - d;
+        System.out.println("Zombie at (" + pos[0] + "," + pos[1] + ") at " + getHealth() + " health.");
         if (this.getHealth() <= 0)
             this.kill();
     }

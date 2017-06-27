@@ -13,13 +13,18 @@ public class PvZDriver {
         int col;
         ArrayList<String> nameList;
 		
-        while (!timer.isDone() /*&& owner is not dead*/) {
+        while (!timer.isDone() && !map.progress()) {
             System.out.println("Time..." + timer.getCurrentString());
+
+            //map.progress();
+
+            map.spawnZombie(timer.getCurrentSeconds());
 
             map.display();
 
             if (timer.getCurrentSeconds() != 0) {
-                if ((timer.getCurrentSeconds() + 1) % 3 == 0) {
+                if ((timer.getCurrentSeconds()) % 3 == 0) {
+
                     System.out.print("Collect sun? [Y/N]: ");
                     input = sc.next();
                     if (input.equalsIgnoreCase("Y")){
@@ -55,7 +60,7 @@ public class PvZDriver {
                 }
             }
             
-            timer.progress(1);
+            timer.progress(3);
             /*
             if (owner is not dead)
                 timer.progress(3);
